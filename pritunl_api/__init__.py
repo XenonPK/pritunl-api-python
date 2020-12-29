@@ -123,14 +123,15 @@ class Pritunl:
             self.root = root
 
         def get(self):
-            try:
-                self.r = self.root.auth_request(method="GET", path="/organization")
-                if self.r.status_code == 200:
-                    return self.r.json()
-                else:
-                    raise PritunlErr("{0}:{1}".format(sys._getframe().f_code.co_name, self.root.BASE_URL))
-            except Exception:
-                raise PritunlErr("{0}:{1}".format(sys._getframe().f_code.co_name, self.root.BASE_URL))
+            #try:
+            self.r = self.root.auth_request(method="GET", path="/organization")
+            if self.r.status_code == 200:
+                return self.r.json()
+            else:
+                print(self.r.status_code)
+            #    raise PritunlErr("{0}:{1}".format(sys._getframe().f_code.co_name, self.root.BASE_URL))
+            #except Exception:
+                #raise PritunlErr("{0}:{1}".format(sys._getframe().f_code.co_name, self.root.BASE_URL))
 
         def post(self, data=None):
             self.headers = {'Content-Type': 'application/json'}
